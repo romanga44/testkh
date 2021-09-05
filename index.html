@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>  <!-- Подключаем файл стилей -->
+</head>
+<body onload="namechart.visual()" > <!-- Позволим графику загружаться при открытии страницы. График реализован с помощью vue -->
+  <div id="container"  class="chart_wrap">
+  </div> <!-- Блок, в котором будет построен график -->
+  <!-- Далее строим формы, значения которых будут формировать новые графики, после валидации введенных данных по кнопке
+  Стоит отметить:
+  1. Атрибуты min и max установят минимальные и максимальные границы диапазона данных соответственно. В коде JS, функционирует валидация,
+  а следовательно данные параметры можно убрать. Я же их написал просто из-за дополнительного окошка, который формирует браузер;
+  2. Атрибут required служит для установления обязательного заполнения данными. Написал из-за тех же дополнительных уведомлений;
+  3. Атрибут Placeholder выводит текст внутри текстового поля, который исчезнет при заполнении данными, служит для примера значений;
+  4. Атрибут value сразуопределит значение в формах; 
+  5. В типе text установлен атрибут maxlength, устанавающий максимальное количество символов;
+  6. Используем тип number, чтобы сразу запретить лишние символы -->
+    <form class="decor" id="Just" onsubmit="return false;"> <!-- Отменим перересовку или же обновление внешнего вида графика, при добавлении нового -->
+      <div class="form-inner" id="component">
+        <h3>Введите название семян:</h3>
+        <input type="text" placeholder="Фасоль" maxlength="20" id="nameg" value="Горох" required>
+        <h3>Введите данные за 2025 год:</h3>
+        <input type="number" placeholder="25" min="0"  max="100" id="num1" value="10" required>
+        <h3>Введите данные за 2026 год:</h3>
+        <input type="number" placeholder="15" min="0"  max="100" id="num2" value="20" required>
+        <h3>Введите данные за 2027 год:</h3>
+        <input type="number" placeholder="36" min="0"  max="100" id="num3" value="30" required>
+        <h3>Введите данные за 2028 год:</h3>
+        <input type="number" placeholder="49" min="0"  max="100" id="num4" value="40" required>
+        <input type="submit" id="submit" value="Добавить вид семян" v-on:click="Valid"> <!-- Вызываем функцию валидации и отправки данных форм -->
+        <input type="submit" id="random" value="Добавить случайные значения" v-on:click="Random"> <!-- Вызываем функцию для рандомизации данных в формах -->
+      </div>
+    </form>
+  <script src="https://code.highcharts.com/highcharts.js"></script> <!-- Подключаем библиотеку для работы с графиками -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script><!-- Подключаем файл для работы с vue -->
+  <script src="js/app.js"></script> <!-- Подключаем файл с кодом js -->
+</body>
+</html>
